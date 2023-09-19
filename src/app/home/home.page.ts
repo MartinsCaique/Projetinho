@@ -21,7 +21,7 @@ export class HomePage {
   // Listar Funcionários
   getFuncionarios(){
     this.isLoading = true;
-    fetch('http://localhost/empresa/funcionario/listar_funcionario.php')
+    fetch('http://localhost/empresa/funcionario/listar_funcionario.php',)
     .then(response => response.json())
     .then(response => {
       this.funcionarios = response['funcionarios']

@@ -8,6 +8,7 @@
     <ion-modal [isOpen]="isInserirOpen">
       <ng-template>
         <ion-toolbar>
+          <ion-text>Inserir</ion-text>
           <ion-buttons slot="end">
             <ion-button (click)="setOpenInserir(false)">Close</ion-button>
           </ion-buttons>
@@ -15,45 +16,75 @@
         <ion-content class="ion-padding">
 
           <ion-row class="ion-justify-content-center">
-            <ion-col class="ion-text-align-center" size="12" size-lg="6">
+            <ion-col class="ion-text-align-center" size="12">
 
               <!-- Formulário -->
-              <form #inserirAlunoForm="ngForm">
+              <form #inserirFuncionarioForm="ngForm">
                 <ion-item class="ion-text-center" lines="none">
                   <ion-label>Inserir Novo Funcionário</ion-label>
                 </ion-item>
+                <ion-row>
+                  <ion-col>
+                    <ion-item>
+                      <ion-input label="Nome" name="nome" ngModel type="text" label-placement="floating"></ion-input>
+                    </ion-item>
+                  </ion-col>
+                  <ion-col>
+                    <ion-item>
+                      <ion-input label="Sobrenome" name="sobrenome" ngModel type="text" label-placement="floating"></ion-input>
+                    </ion-item>
+                  </ion-col>
+                </ion-row>
+                <ion-row>
+                  <ion-col>
+                    <ion-item>
+                      <ion-input label="Cargo" name="cargo" ngModel type="text" label-placement="floating"></ion-input>
+                    </ion-item>
+                  </ion-col>
+                </ion-row>
+                <ion-row>
+                  <ion-col>
+                    <ion-item>
+                      <ion-input label="Data de Nascimento" name="dataNasc" ngModel type="date" label-placement="floating"></ion-input>
+                    </ion-item>
+                  </ion-col>
+                </ion-row>
+                <ion-row>
+                  <ion-col>
+                    <ion-item>
+                      <ion-input label="Endereço" name="endereco" ngModel type="text" label-placement="floating"></ion-input>
+                    </ion-item>
+                  </ion-col>
+                  <ion-col>
+                    <ion-item>
+                      <ion-input label="CEP" name="cep" ngModel type="number" label-placement="floating"></ion-input>
+                    </ion-item>
+                  </ion-col>
+                </ion-row>
+                <ion-row>
+                  <ion-col>
+                    <ion-item>
+                      <ion-input label="País" name="pais" ngModel type="text" label-placement="floating"></ion-input>
+                    </ion-item>
+                  </ion-col>
+                  <ion-col>
+                    <ion-item>
+                      <ion-input label="Telefone" name="fone" ngModel type="tel" label-placement="floating"></ion-input>
+                    </ion-item>
+                  </ion-col>
+                </ion-row>
+                <ion-row>
+                  <ion-col>
 
-                <ion-item>
-                  <ion-input label="Nome" name="nome" ngModel type="text"></ion-input>
-                </ion-item>
-                <ion-item>
-                  <ion-input label="Sobrenome" name="sobrenome" ngModel type="text"></ion-input>
-                </ion-item>
-                <ion-item>
-                  <ion-input label="Cargo" name="cargo" ngModel type="text"></ion-input>
-                </ion-item>
-                <ion-item>
-                  <ion-input label="Data de Nascimento" name="dataNasc" ngModel type="date"></ion-input>
-                </ion-item>
-                <ion-item>
-                  <ion-input label="Endereço" name="endereco" ngModel type="text"></ion-input>
-                </ion-item>
-                <ion-item>
-                  <ion-input label="CEP" name="cep" ngModel type="number"></ion-input>
-                </ion-item>
-                <ion-item>
-                  <ion-input label="País" name="pais" ngModel type="text"></ion-input>
-                </ion-item>
-                <ion-item>
-                  <ion-input label="Telefone" name="fone" ngModel type="tel"></ion-input>
-                </ion-item>
-                <ion-item>
-                  <ion-input label="Salário" name="salario" ngModel type="number"></ion-input>
-                </ion-item>
-
-                <ion-item lines="none">
+                    <ion-item>
+                      <ion-input label="Salário" name="salario" ngModel type="number" label-placement="floating"></ion-input>
+                    </ion-item>
+                  </ion-col>
+                </ion-row>
+                <ion-item class="ion-justify-content-center" lines="none">
                   <ion-button color="light" slot="end" type="submit">Inserir Aluno</ion-button>
                 </ion-item>
+
               </form>
 
             </ion-col>
@@ -67,7 +98,7 @@
 
   <!-- LISTAR TODOS funcionarios -->
   <ion-row class="ion-justify-content-center">
-    <ion-col size="12" size-lg="6">
+    <ion-col size="12">
       <ion-row class="ion-justify-content-center">
         <ion-col size="12">
           <ion-list class="list">
@@ -88,7 +119,50 @@
                       <ion-button (click)="setOpenAtualizar(false)">Close</ion-button>
                     </ion-buttons>
                     <ion-content class="ion-padding">
+                      <ion-row class="ion-justify-content-center">
+                        <ion-col class="ion-text-align-center" size="12" size-lg="6">
 
+                          <!-- Formulário -->
+                          <form #AtualizarFuncionárioForm="ngForm">
+                            <ion-item class="ion-text-center" lines="none">
+                              <ion-label>Inserir Novo Funcionário</ion-label>
+                            </ion-item>
+
+                            <ion-item>
+                              <ion-input label="Nome" name="nome" ngModel type="text"></ion-input>
+                            </ion-item>
+                            <ion-item>
+                              <ion-input label="Sobrenome" name="sobrenome" ngModel type="text"></ion-input>
+                            </ion-item>
+                            <ion-item>
+                              <ion-input label="Cargo" name="cargo" ngModel type="text"></ion-input>
+                            </ion-item>
+                            <ion-item>
+                              <ion-input label="Data de Nascimento" name="dataNasc" ngModel type="date"></ion-input>
+                            </ion-item>
+                            <ion-item>
+                              <ion-input label="Endereço" name="endereco" ngModel type="text"></ion-input>
+                            </ion-item>
+                            <ion-item>
+                              <ion-input label="CEP" name="cep" ngModel type="number"></ion-input>
+                            </ion-item>
+                            <ion-item>
+                              <ion-input label="País" name="pais" ngModel type="text"></ion-input>
+                            </ion-item>
+                            <ion-item>
+                              <ion-input label="Telefone" name="fone" ngModel type="tel"></ion-input>
+                            </ion-item>
+                            <ion-item>
+                              <ion-input label="Salário" name="salario" ngModel type="number"></ion-input>
+                            </ion-item>
+
+                            <ion-item lines="none">
+                              <ion-button color="light" slot="end" type="submit">Inserir Aluno</ion-button>
+                            </ion-item>
+                          </form>
+
+                        </ion-col>
+                      </ion-row>
                     </ion-content>
                   </ng-template>
                 </ion-modal>

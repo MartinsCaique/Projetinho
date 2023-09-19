@@ -66,4 +66,10 @@ export class HomePage {
     this.isAtualizarOpen = isOpen;
   }
 
+  // Inserir Funcionários
+  isInserirOpen = false;
+
+  setOpenInserir(isOpen: boolean) {
+    this.isInserirOpen = isOpen;
+  }
 }

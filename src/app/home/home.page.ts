@@ -134,7 +134,7 @@ export class HomePage {
     evento.preventDefault()
     fetch('http://localhost/empresa/funcionario/atualizar_funcionario.php',
     {
-    method: 'POST',
+    method: 'PUT',
     headers: {
       'Content-Type': 'application/json',
     },
@@ -172,12 +172,13 @@ export class HomePage {
       Nome: dados.nome,
       Sobrenome: dados.sobrenome,
       Cargo: dados.cargo,
-      Salario: dados.salario,
       DataNasc: dados.dataNasc,
+      Endereco: dados.endereco,
       Cidade: dados.cidade,
       CEP: dados.cep,
-      Endereco: dados.endereco,
+      Pais: dados.pais,
       Fone: dados.fone,
+      Salario: dados.salario,
     })
     })
     .then(response => response.json())

@@ -88,20 +88,14 @@ export class HomePage {
   // Atualizar Funcionários
   isAtualizarOpen = false;
 
-  setOpenAtualizar(isOpen: boolean) {
+  setOpenAtualizar(isOpen: boolean, codigo: number | null) {
     this.isAtualizarOpen = isOpen;
+    console.log(codigo)
+    if (codigo) {
+      this.pegarDados(codigo)
+    }
   }
 
-  atualizarFuncionario(){
-    fetch('http://localhost/empresa/funcionario/atualizar_funcionario.php',
-    {
-    // method: 'POST',
-    // headers: {
-    //   'Content-Type': 'application/json',
-    // },
-    // body: JSON.stringify().
-   })
-  }
 
   pegarDados(codigo: number) {
     fetch(`http://localhost/empresa/funcionario/pegar_funcionario.php?codigo=${codigo}`,
@@ -136,6 +130,30 @@ export class HomePage {
     )
   }
 
+  enviarDados(evento: any){
+    evento.preventDefault()
+    fetch('http://localhost/empresa/funcionario/atualizar_funcionario.php',
+    {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(this.form)
+    })
+   .then(response => response.json())
+   .then(response =>{
+    console.log(response)
+   })
+   .catch(error=>{
+    console.log(error)
+   })
+   .finally(()=> {
+    this.isLoading = false
+    this.getFuncionarios()
+    console.log('funcionou')
+  })
+  }
+
   // Inserir Funcionários
   isInserirOpen = false;
 
@@ -143,15 +161,38 @@ export class HomePage {
     this.isInserirOpen = isOpen;
   }
 
-//   inserirFuncionario(){
-//     fetch('http://localhost/empresa/funcionario/inserir_funcionario.php',
-//     {
-//     method: 'POST',
-//     headers: {
-//       'Content-Type': 'application/json',
-//     },
-//     body: JSON.stringify(8).
-//     })
-//   }
-// }
+  inserirFuncionario(dados: any){
+    fetch('http://localhost/empresa/funcionario/inserir_funcionario.php',
+    {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      Nome: dados.nome,
+      Sobrenome: dados.sobrenome,
+      Cargo: dados.cargo,
+      Salario: dados.salario,
+      DataNasc: dados.dataNasc,
+      Cidade: dados.cidade,
+      CEP: dados.cep,
+      Endereco: dados.endereco,
+      Fone: dados.fone,
+    })
+    })
+    .then(response => response.json())
+    .then(response => {
+      console.log(response)
+    })
+    .catch(error => {
+      console.log(error)
+    })
+    .finally(() => {
+      this.isLoading = false
+      this.getFuncionarios()
+    })
+  }
 }
+
+
+

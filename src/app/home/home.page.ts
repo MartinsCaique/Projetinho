@@ -31,6 +31,7 @@ export class HomePage {
     fone: '',
     salario: '',
   };
+  
   searchTerm: string = '';
   selectedFilter: string = 'name';
 
@@ -149,7 +150,6 @@ export class HomePage {
     })
     .catch(error => {
       console.error(error);
-      this.isLoading = false;
     })
     .finally(() => {
       this.isLoading = false;
@@ -165,7 +165,7 @@ export class HomePage {
     this.isInserirOpen = isOpen;
   }
 
-    inserirFuncionario(dados: any){
+  inserirFuncionario(dados: any){
       this.isLoading = true
       fetch('http://localhost/empresa/funcionario/inserir_funcionario.php',{
         method: 'POST',
@@ -177,15 +177,14 @@ export class HomePage {
       .then((response) => response.json())
       .then((response) => {
         console.log(response);
-        console.log(dados); 
-
+        this.getFuncionarios();
       })
       .catch((error) => {
         console.log(error);
       })
       .finally(()=>{
         this.isLoading = false;
-        this.getFuncionarios();
+        this.setOpenInserir(false)
       })
     }
 

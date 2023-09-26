@@ -131,9 +131,9 @@
                 <ion-label>Cargo: {{ funcionario.Cargo }}</ion-label>
                 <ion-label>Cidade: {{ funcionario.Cidade }}</ion-label>
                 <ion-label>Telefone: {{ funcionario.Fone }}</ion-label>
-                <ion-button (click)="setOpenAtualizar(true, funcionario.CodFun)"><ion-icon size="large"
+                <ion-button (click)="setOpenAtualizar(true, funcionario.CodFun)"><ion-icon
                     name="pencil-outline"></ion-icon></ion-button>
-                <ion-button (click)="removerFuncionarios(funcionario.CodFun)"><ion-icon size="large"
+                <ion-button color="danger" (click)="removerFuncionarios(funcionario.CodFun)"><ion-icon
                     name="trash-outline"></ion-icon></ion-button>
 
                 <ion-modal [isOpen]="isAtualizarOpen">
@@ -182,8 +182,8 @@
                               </ion-col>
                               <ion-col>
                                 <ion-item>
-                                  <ion-input #input [(ngModel)]="form.cidade" label="Cidade" name="cidade" ngModel type="text"
-                                    label-placement="floating"></ion-input>
+                                  <ion-input #input [(ngModel)]="form.cidade" label="Cidade" name="cidade" ngModel
+                                    type="text" label-placement="floating"></ion-input>
                                 </ion-item>
                               </ion-col>
                             </ion-row>

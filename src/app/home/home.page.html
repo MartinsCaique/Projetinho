@@ -50,6 +50,12 @@
                         label-placement="floating"></ion-input>
                     </ion-item>
                   </ion-col>
+                  <ion-col>
+                    <ion-item>
+                      <ion-input #input ngModel label="Cidade" name="cidade" ngModel type="text"
+                        label-placement="floating"></ion-input>
+                    </ion-item>
+                  </ion-col>
                 </ion-row>
                 <ion-row>
                   <ion-col>
@@ -100,9 +106,11 @@
   </ion-row>
 
   <ion-row class="ion-justify-content-center ">
-    <ion-col size="6"><ion-searchbar></ion-searchbar></ion-col>
     <ion-col size="6">
-      <ion-radio-group [allowEmptySelection]="true" value="turtles">
+      <ion-searchbar [(ngModel)]="searchTerm" (ionChange)="filtroFuncionario()"></ion-searchbar>
+    </ion-col>
+    <ion-col size="6">
+      <ion-radio-group [(ngModel)]="selectedFilter" (ionChange)="filtroFuncionario()">
         <ion-radio class="radio" value="name">Nome</ion-radio>
         <ion-radio class="radio" value="cargo">Cargo</ion-radio>
         <ion-radio class="radio" value="cidade">Cidade</ion-radio>
@@ -170,6 +178,12 @@
                                 <ion-item>
                                   <ion-input #input [(ngModel)]="form.dataNasc" label="Data de Nascimento"
                                     name="dataNasc" ngModel type="date" label-placement="floating"></ion-input>
+                                </ion-item>
+                              </ion-col>
+                              <ion-col>
+                                <ion-item>
+                                  <ion-input #input [(ngModel)]="form.cidade" label="Cidade" name="cidade" ngModel type="text"
+                                    label-placement="floating"></ion-input>
                                 </ion-item>
                               </ion-col>
                             </ion-row>

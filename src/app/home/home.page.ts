@@ -31,6 +31,8 @@ export class HomePage {
     fone: '',
     salario: '',
   };
+  searchTerm: string = '';
+  selectedFilter: string = 'name';
 
 
 
@@ -132,26 +134,28 @@ export class HomePage {
 
   enviarDados(evento: any){
     evento.preventDefault()
-    fetch('http://localhost/empresa/funcionario/atualizar_funcionario.php',
-    {
-    method: 'PUT',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify(this.form)
+    this.isLoading = true
+
+    fetch('http://localhost/empresa/funcionario/atualizar_funcionario.php', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(this.form),
     })
-   .then(response => response.json())
-   .then(response =>{
-    console.log(response)
-   })
-   .catch(error=>{
-    console.log(error)
-   })
-   .finally(()=> {
-    this.isLoading = false
-    this.getFuncionarios()
-    console.log('funcionou')
-  })
+    .then(response => response.json())
+    .then(response => {
+      console.log(response);
+    })
+    .catch(error => {
+      console.error(error);
+      this.isLoading = false;
+    })
+    .finally(() => {
+      this.isLoading = false;
+      this.getFuncionarios(); // Atualiza a lista de funcionários após a atualização
+      this.setOpenAtualizar(false, null);
+    })
   }
 
   // Inserir Funcionários
@@ -161,37 +165,50 @@ export class HomePage {
     this.isInserirOpen = isOpen;
   }
 
-  inserirFuncionario(dados: any){
-    fetch('http://localhost/empresa/funcionario/inserir_funcionario.php',
-    {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({
-      Nome: dados.nome,
-      Sobrenome: dados.sobrenome,
-      Cargo: dados.cargo,
-      DataNasc: dados.dataNasc,
-      Endereco: dados.endereco,
-      Cidade: dados.cidade,
-      CEP: dados.cep,
-      Pais: dados.pais,
-      Fone: dados.fone,
-      Salario: dados.salario,
+    inserirFuncionario(dados: any){
+      this.isLoading = true
+      fetch('http://localhost/empresa/funcionario/inserir_funcionario.php',{
+        method: 'POST',
+        headers: {
+          'Content-Type': 'applicattion/json',
+        },
+        body: JSON.stringify(dados),
+      })
+      .then((response) => response.json())
+      .then((response) => {
+        console.log(response);
+        console.log(dados); 
+
+      })
+      .catch((error) => {
+        console.log(error);
+      })
+      .finally(()=>{
+        this.isLoading = false;
+        this.getFuncionarios();
+      })
+    }
+
+  // Filtro Funcionarios
+  filtroFuncionario() {
+    const requestData = {
+      searchTerm: this.searchTerm,
+      filter: this.selectedFilter,
+    };
+    fetch('http://localhost/empresa/funcionario/filtro.php',{
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(requestData),
     })
-    })
-    .then(response => response.json())
-    .then(response => {
-      console.log(response)
-    })
-    .catch(error => {
-      console.log(error)
-    })
-    .finally(() => {
-      this.isLoading = false
-      this.getFuncionarios()
-    })
+    .then((response) => response.json())
+      .then((data) => {
+        this.funcionarios = data.funcionarios;
+      })
+      .catch((error) => {
+        console.error('Erro na busca de funcionários:', error);
+      });
   }
 }
 

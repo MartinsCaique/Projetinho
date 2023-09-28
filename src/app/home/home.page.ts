@@ -190,7 +190,7 @@ export class HomePage {
 
   // Filtro Funcionarios
   filtroFuncionario() {
-    const requestData = {
+    const procurar = {
       searchTerm: this.searchTerm,
       filter: this.selectedFilter,
     };
@@ -199,17 +199,14 @@ export class HomePage {
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify(requestData),
+      body: JSON.stringify(procurar),
     })
     .then((response) => response.json())
-      .then((data) => {
+    .then((data) => {
         this.funcionarios = data.funcionarios;
-      })
-      .catch((error) => {
+    })
+    .catch((error) => {
         console.error('Erro na busca de funcionários:', error);
-      });
+    });
   }
 }
-
-
-
